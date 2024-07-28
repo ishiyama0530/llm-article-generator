@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Node.js (ts-node)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/src/index.ts"],
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+      },
+      "sourceMaps": true,
+      "smartStep": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "langchain-article-generator",
+  "version": "1.0.0",
+  "description": "LangChainを使用した技術記事生成モジュール",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "type": "tsc --noEmit",
+    "check": "biome check --write ./src ./tests",
+    "verify-all": "npm run type && npm run biome"
+  },
+  "keywords": [
+    "langchain",
+    "openai",
+    "gpt",
+    "article",
+    "generator"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@langchain/anthropic": "^0.2.10",
+    "@langchain/openai": "^0.2.5",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.2.11",
+    "langsmith": "^0.1.39",
+    "winston": "^3.13.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.12",
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^3.0.7",
+    "ts-jest": "^29.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
