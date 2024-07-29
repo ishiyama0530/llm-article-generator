@@ -7,8 +7,8 @@ export async function saveArticle(
 	article: string,
 	outputDir: string,
 ): Promise<void> {
-	// const fileName = `${topic}_${new Date().toISOString()}.md`;
-	const fileName = `${topic}.md`;
+	const fileName = `${topic}_${new Date().toISOString()}.md`;
+	// const fileName = `${topic}.md`;
 	const filePath = path.join(outputDir, fileName);
 
 	try {

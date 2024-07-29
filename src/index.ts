@@ -1,13 +1,13 @@
 import path from "node:path";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
+import type { BaseMessagePromptTemplateLike } from "@langchain/core/prompts";
 import { ChatOpenAI } from "@langchain/openai";
-import type { BaseMessagePromptTemplateLike } from "../node_modules/@langchain/core/dist/prompts/chat.d.ts";
 import { ArticleSectionParser } from "./parsers/ArticleSectionParser";
 import { getFirstPromptMessage } from "./prompts/getFirstPromptMessage";
 import { getImprovePromptMessage } from "./prompts/getImprovePromptMessage";
 import { getSystemMessage } from "./prompts/getSystemMessage";
 import { getTodayTitle, saveArticle } from "./utils/file";
-import logger from "./utils/logger.js";
+import logger from "./utils/logger";
 import { decorateTemplate } from "./utils/template";
 import { formatResult } from "./utils/text";
 

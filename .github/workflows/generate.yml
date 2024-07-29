@@ -1,4 +1,4 @@
-name: Setup Environment, Modify and Push Code
+name: Generate article
 
 on:
   push:
