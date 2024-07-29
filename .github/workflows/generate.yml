@@ -24,6 +24,10 @@ jobs:
           node --version
           date
 
+      - name: Install dependencies
+        run: |
+          npm ci
+
       - name: Generate article
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
