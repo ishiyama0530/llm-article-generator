@@ -85,7 +85,7 @@ async function main() {
 
 	const article = await generateArticle(topic);
 
-	logger.info(`記事生成が完了しました。\n\n${article}`);
+	logger.info(`記事生成が完了しました。\n\n文字数: ${article.length}`);
 }
 
 main().catch(logger.error);
