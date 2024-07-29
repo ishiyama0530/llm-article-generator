@@ -1,0 +1,44 @@
+name: Setup Environment, Modify and Push Code
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  modify-and-push:
+    runs-on: ubuntu-latest
+    env:
+      TZ: "Asia/Tokyo"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Check Node.js version and timezone
+        run: |
+          node --version
+          date
+
+      - name: Generate article
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LANGCHAIN_TRACING_V2: ${{ secrets.LANGCHAIN_TRACING_V2 }}
+          LANGCHAIN_ENDPOINT: ${{ secrets.LANGCHAIN_ENDPOINT }}
+          LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
+          LANGCHAIN_PROJECT: ${{ secrets.LANGCHAIN_PROJECT }}
+        run: |
+          npm run start
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add generated_articles/*.md
+          git commit -m "new article generated" 
+          git push

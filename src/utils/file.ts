@@ -7,7 +7,8 @@ export async function saveArticle(
 	article: string,
 	outputDir: string,
 ): Promise<void> {
-	const fileName = `${topic}_${new Date().toISOString()}.md`;
+	// const fileName = `${topic}_${new Date().toISOString()}.md`;
+	const fileName = `${topic}.md`;
 	const filePath = path.join(outputDir, fileName);
 
 	try {
@@ -18,4 +19,21 @@ export async function saveArticle(
 		logger.error("記事の保存中にエラーが発生しました:", error);
 		throw error;
 	}
+}
+
+export async function getTodayTitle(filePath: string): Promise<string> {
+	const today = new Date().toISOString().split("T")[0];
+	const rawData = await fs.readFile(filePath, "utf8");
+
+	const titleData: {
+		[date: string]: string;
+	} = JSON.parse(rawData);
+
+	const title = titleData[today];
+
+	if (!title) {
+		throw new Error("タイトルが取得できませんでした");
+	}
+
+	return title;
 }

@@ -1,26 +1,20 @@
 {
-  "name": "langchain-article-generator",
-  "version": "1.0.0",
+  "name": "llm-article-generator",
+  "version": "0.0.1",
   "description": "LangChainを使用した技術記事生成モジュール",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "node dist/index.js",
+    "unused:start": "node dist/index.js",
     "build": "tsc",
     "dev": "ts-node src/index.ts",
+    "start": "ts-node src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "type": "tsc --noEmit",
     "check": "biome check --write ./src ./tests",
     "verify-all": "npm run type && npm run biome"
   },
-  "keywords": [
-    "langchain",
-    "openai",
-    "gpt",
-    "article",
-    "generator"
-  ],
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
@@ -29,8 +23,7 @@
     "dotenv": "^16.4.5",
     "langchain": "^0.2.11",
     "langsmith": "^0.1.39",
-    "winston": "^3.13.1",
-    "zod": "^3.23.8"
+    "winston": "^3.13.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

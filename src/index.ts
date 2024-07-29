@@ -1,3 +1,4 @@
+import path from "node:path";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { ChatOpenAI } from "@langchain/openai";
 import type { BaseMessagePromptTemplateLike } from "../node_modules/@langchain/core/dist/prompts/chat.d.ts";
@@ -5,7 +6,9 @@ import { ArticleSectionParser } from "./parsers/ArticleSectionParser";
 import { getFirstPromptMessage } from "./prompts/getFirstPromptMessage";
 import { getImprovePromptMessage } from "./prompts/getImprovePromptMessage";
 import { getSystemMessage } from "./prompts/getSystemMessage";
-import { saveArticle } from "./utils/file";
+import { getTodayTitle, saveArticle } from "./utils/file";
+import logger from "./utils/logger.js";
+import { decorateTemplate } from "./utils/template";
 import { formatResult } from "./utils/text";
 
 require("dotenv").config();
@@ -41,7 +44,7 @@ async function improveArticle(
 	return { promptMessages: messages, article: result };
 }
 
-export async function generateArticle(topic: string): Promise<void> {
+export async function generateArticle(topic: string): Promise<string> {
 	const basePromptMessages: BaseMessagePromptTemplateLike[] = [
 		["system", getSystemMessage()],
 		["human", getFirstPromptMessage()],
@@ -53,24 +56,36 @@ export async function generateArticle(topic: string): Promise<void> {
 		topic,
 	});
 
-	const improved1 = await improveArticle(basePromptMessages, result, topic);
-	const improved2 = await improveArticle(
-		improved1.promptMessages,
-		improved1.article,
+	let improved = await improveArticle(basePromptMessages, result, topic);
+	improved = await improveArticle(
+		improved.promptMessages,
+		improved.article,
 		topic,
 	);
-	const improve3 = await improveArticle(
-		improved2.promptMessages,
-		improved2.article,
+	improved = await improveArticle(
+		improved.promptMessages,
+		improved.article,
 		topic,
 	);
 
-	await saveArticle(topic, improve3.article, "./generated_articles");
+	const article = decorateTemplate(improved.article);
+
+	await saveArticle(topic, article, "./generated_articles");
+
+	return article;
 }
 
 async function main() {
-	const topic = "ブラウザにおけるCookieの仕組みとプライバシーへの影響";
-	await generateArticle(topic);
+	logger.info("記事生成を開始します");
+
+	const filePath = path.join(__dirname, "../data/titles.json");
+	const topic = await getTodayTitle(filePath);
+
+	logger.info(`タイトル: ${topic}`);
+
+	const article = await generateArticle(topic);
+
+	logger.info(`記事生成が完了しました。\n\n${article}`);
 }
 
-main().catch(console.error);
+main().catch(logger.error);
