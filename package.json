@@ -13,7 +13,7 @@
     "test:watch": "jest --watch",
     "type": "tsc --noEmit",
     "check": "biome check --write ./src ./tests",
-    "verify-all": "npm run type && npm run biome"
+    "verify-all": "npm run type && npm run check"
   },
   "author": "Your Name",
   "license": "MIT",
