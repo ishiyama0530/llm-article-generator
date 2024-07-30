@@ -1,4 +1,5 @@
 import * as fs from "node:fs/promises";
+import dayjs from "dayjs";
 import { getTodayTitle, saveArticle } from "../../src/utils/file";
 
 jest.mock("node:fs/promises");
@@ -33,7 +34,7 @@ describe("utils/saveArticle::getTodayTitle", () => {
 
 	test("当日のタイトルを取得する", async () => {
 		const filePath = "/path/to/titles.json";
-		const today = new Date().toISOString().split("T")[0];
+		const today = dayjs().tz().format("YYYY-MM-DD");
 		const titleData = {
 			[today]: "MySQLで始めるSQL入門",
 		};

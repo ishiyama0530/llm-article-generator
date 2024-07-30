@@ -1,5 +1,6 @@
 import * as fs from "node:fs/promises";
 import path from "node:path";
+import dayjs from "dayjs";
 import { logger } from "./logger";
 
 export async function saveArticle(
@@ -21,7 +22,7 @@ export async function saveArticle(
 }
 
 export async function getTodayTitle(filePath: string): Promise<string> {
-	const today = new Date().toISOString().split("T")[0];
+	const today = dayjs().tz().format("YYYY-MM-DD");
 	const rawData = await fs.readFile(filePath, "utf8");
 
 	const titleData: {

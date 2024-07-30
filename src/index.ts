@@ -1,6 +1,9 @@
 import path from "node:path";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { ChatOpenAI } from "@langchain/openai";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { config } from "dotenv";
 import { ArticleGenerator } from "./generators/ArticleGenerator";
 import { SlugGenerator } from "./generators/SlugGenerator";
@@ -11,6 +14,10 @@ import { logger } from "./utils/logger";
 import { addZennMeta, decorateTemplate } from "./utils/template";
 
 config();
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault(process.env.TZ || "Asia/Tokyo");
 
 const articleSectionParser = new ArticleSectionParser();
 const stringOutputParser = new StringOutputParser();
@@ -46,5 +53,3 @@ async function main() {
 
 	logger.info(`記事生成が完了しました。\n\n文字数: ${article.length}`);
 }
-
-main().catch(logger.error);
