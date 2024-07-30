@@ -1,4 +1,5 @@
 import path from "node:path";
+import { StringOutputParser } from "@langchain/core/output_parsers";
 import { ChatOpenAI } from "@langchain/openai";
 import { ArticleGenerator } from "./generators/ArticleGenerator";
 import { SlugGenerator } from "./generators/SlugGenerator";
@@ -10,7 +11,8 @@ import { addZennMeta } from "./utils/template";
 
 require("dotenv").config();
 
-const parser = new ArticleSectionParser();
+const articleSectionParser = new ArticleSectionParser();
+const stringOutputParser = new StringOutputParser();
 
 const model = new ChatOpenAI({
 	model: "gpt-4o-mini",
@@ -19,9 +21,9 @@ const model = new ChatOpenAI({
 	apiKey: process.env.OPENAI_API_KEY,
 });
 
-const articleGenerator = new ArticleGenerator(model, parser);
-const topicsGenerator = new TopicsGenerator(model, parser);
-const slugGenerator = new SlugGenerator(model, parser);
+const articleGenerator = new ArticleGenerator(model, articleSectionParser);
+const topicsGenerator = new TopicsGenerator(model, stringOutputParser);
+const slugGenerator = new SlugGenerator(model, stringOutputParser);
 
 async function main() {
 	logger.info("記事生成を開始します");
@@ -32,8 +34,8 @@ async function main() {
 	logger.info(`タイトル: ${title}`);
 
 	const article = await articleGenerator.generate(title);
-	const topics = await topicsGenerator.generate("network,dns,http");
-	const slug = await slugGenerator.generate("network-basic");
+	const topics = await topicsGenerator.generate(article);
+	const slug = await slugGenerator.generate(article);
 
 	const result = addZennMeta(title, topics, article);
 

@@ -27,12 +27,12 @@ export class ArticleGenerator {
 		});
 
 		let improved = await this.improveArticle(basePromptMessages, result, title);
-		improved = await improveArticle(
+		improved = await this.improveArticle(
 			improved.promptMessages,
 			improved.article,
 			title,
 		);
-		improved = await improveArticle(
+		improved = await this.improveArticle(
 			improved.promptMessages,
 			improved.article,
 			title,
