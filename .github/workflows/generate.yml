@@ -2,7 +2,7 @@ name: Generate article
 
 on:
   push:
-    branches: [staging]
+    branches: [main]
 
 permissions:
   contents: write
