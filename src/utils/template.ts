@@ -16,3 +16,16 @@ ${article}
 
 ${footer}`;
 }
+
+export function addZennMeta(title: string, topics: string[], article: string) {
+	const topicsString = topics.map((topic) => `"${topic}"`).join(", ");
+	return `---
+title: "${title}"
+emoji: "🤖"
+type: "tech"
+topics: [${topicsString}]
+published: false
+---
+
+${article}`;
+}

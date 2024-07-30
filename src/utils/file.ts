@@ -3,12 +3,11 @@ import path from "node:path";
 import logger from "./logger";
 
 export async function saveArticle(
-	topic: string,
+	title: string,
 	article: string,
 	outputDir: string,
 ): Promise<void> {
-	const fileName = `${topic}_${new Date().toISOString()}.md`;
-	// const fileName = `${topic}.md`;
+	const fileName = `${title}.md`;
 	const filePath = path.join(outputDir, fileName);
 
 	try {
