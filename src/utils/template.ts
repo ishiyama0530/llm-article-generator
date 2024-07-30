@@ -24,7 +24,7 @@ title: "${title}"
 emoji: "🤖"
 type: "tech"
 topics: [${topicsString}]
-published: false
+published: true
 ---
 
 ${article}`;

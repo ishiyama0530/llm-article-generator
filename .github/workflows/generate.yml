@@ -1,8 +1,9 @@
 name: Generate article
 
 on:
-  push:
-    branches: [main]
+  schedule:
+    # 毎日 7:00 (JST)
+    - cron: "0 22 * * *"
 
 permissions:
   contents: write
