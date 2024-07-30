@@ -1,8 +1,8 @@
 {
     "2024-07-29": "MySQLで始めるSQL入門",
-    "2024-07-30": "実践TypeScriptによるReact.js入門",
-    "2024-07-31": "JestとTypeScriptで始めるモックを使用したテスト駆動開発（TDD）",
-    "2024-08-01": "VisualStudioCodeで絶対にしておくべき設定ベスト20",
+    "2024-07-30": "TypeScriptによるReact.js入門",
+    "2024-07-31": "VisualStudioCodeで絶対にしておくべき設定ベスト20",
+    "2024-08-01": "JestとTypeScriptで始めるモックを使用したテスト駆動開発（TDD）",
     "2024-08-02": "TypeScriptおすすめライブラリ ベスト20",
     "2024-08-03": "TypeScriptによる初めてのCleanArchitecture",
     "2024-08-04": "Webブラウザからリクエストを送ってWebサーバーに到達して再びWebブラウザで描画されるまで裏側で行われている全て",
