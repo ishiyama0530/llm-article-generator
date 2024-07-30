@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  modify-and-push:
+  generate-and-push:
     runs-on: ubuntu-latest
     env:
       TZ: "Asia/Tokyo"

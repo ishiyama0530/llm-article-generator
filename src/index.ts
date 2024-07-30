@@ -53,3 +53,5 @@ async function main() {
 
 	logger.info(`記事生成が完了しました。\n\n文字数: ${article.length}`);
 }
+
+main().catch(logger.error);
