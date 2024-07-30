@@ -18,6 +18,9 @@
   },
   "author": "Your Name",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@langchain/anthropic": "^0.2.10",
     "@langchain/openai": "^0.2.5",
