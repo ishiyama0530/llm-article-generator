@@ -1,6 +1,7 @@
 name: Generate article
 
 on:
+  workflow_dispatch:
   schedule:
     # 毎日 7:00 (JST)
     - cron: "0 22 * * *"
