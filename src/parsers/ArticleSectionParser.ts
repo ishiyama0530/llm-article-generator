@@ -16,9 +16,6 @@ export class ArticleSectionParser extends BaseOutputParser<string> {
 		if (match?.[1]) {
 			return match[1].trim();
 		}
-		// throw new Error(
-		// 	"Article content not found between ==articleStart== and ==articleEnd== tags.",
-		// );
 		const parser = new StringOutputParser();
 		const response = await parser.parse(text);
 		throw new Error(response);

@@ -1,15 +1,16 @@
 import path from "node:path";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { ChatOpenAI } from "@langchain/openai";
+import { config } from "dotenv";
 import { ArticleGenerator } from "./generators/ArticleGenerator";
 import { SlugGenerator } from "./generators/SlugGenerator";
 import { TopicsGenerator } from "./generators/TopicsGenerator";
 import { ArticleSectionParser } from "./parsers/ArticleSectionParser";
 import { getTodayTitle, saveArticle } from "./utils/file";
-import logger from "./utils/logger";
-import { addZennMeta } from "./utils/template";
+import { logger } from "./utils/logger";
+import { addZennMeta, decorateTemplate } from "./utils/template";
 
-require("dotenv").config();
+config();
 
 const articleSectionParser = new ArticleSectionParser();
 const stringOutputParser = new StringOutputParser();
@@ -33,7 +34,9 @@ async function main() {
 
 	logger.info(`タイトル: ${title}`);
 
-	const article = await articleGenerator.generate(title);
+	let article = await articleGenerator.generate(title);
+	article = decorateTemplate(article);
+
 	const topics = await topicsGenerator.generate(article);
 	const slug = await slugGenerator.generate(article);
 

@@ -43,6 +43,6 @@ const message = `
 それでは、高品質で包括的な技術記事の作成をお願いします。
 `;
 
-export function getFirstPromptMessage() {
+export function getGeneratePromptMessage() {
 	return message;
 }

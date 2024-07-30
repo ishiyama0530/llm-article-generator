@@ -1,6 +1,6 @@
 import * as fs from "node:fs/promises";
 import path from "node:path";
-import logger from "./logger";
+import { logger } from "./logger";
 
 export async function saveArticle(
 	title: string,

@@ -9,6 +9,13 @@
     "skipLibCheck": true,
     "sourceMap": true
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "tests/generators/ArticleGenerator.test.ts",
+    "tests/parsers/ArticleSectionParser.test.ts",
+    "src/parsers/ArticleSectionParser.ts",
+    "tests/prompts/getFactCheckPromptMessage.test.ts",
+    "tests/utils/file.test.ts"
+  ],
   "exclude": ["node_modules", "**/*.test.ts"]
 }
