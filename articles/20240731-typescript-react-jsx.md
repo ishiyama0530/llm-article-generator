@@ -6,12 +6,6 @@ topics: ["TypeScript", "React", "JSX", "状態管理", "コンポーネント"]
 published: false
 ---
 
-
-※本記事は生成AIを使用して作成されました。正確かつ最新の情報については、信頼できる専門的な情報源や公式ドキュメントをご確認ください。
-AI言語モデル: gpt-4o-mini
-
------
-
 # 実践TypeScriptによるReact.js入門
 
 ## はじめに

@@ -6,10 +6,6 @@ const footer =
 
 export function decorateTemplate(article: string): string {
 	return `
-${header}
-
------
-
 ${article}
 
 -----
