@@ -13,7 +13,7 @@ describe("utils/saveArticle", () => {
 		jest.clearAllMocks();
 	});
 
-	test("処理が成功する", async () => {
+	test("保存処理が成功する", async () => {
 		fsMock.mkdir.mockImplementation(() => {
 			return Promise.resolve(undefined);
 		});
