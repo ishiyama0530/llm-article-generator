@@ -8,5 +8,5 @@
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "cSpell.words": ["langchain"]
+  "cSpell.words": ["langchain", "openai", "Zenn"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "llm-article-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "LangChainを使用した技術記事生成モジュール",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

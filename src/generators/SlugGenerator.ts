@@ -3,7 +3,10 @@ import type { BaseOutputParser } from "@langchain/core/output_parsers";
 import {
 	ChatPromptTemplate,
 	FewShotChatMessagePromptTemplate,
+	HumanMessagePromptTemplate,
+	SystemMessagePromptTemplate,
 } from "@langchain/core/prompts";
+import dayjs from "dayjs";
 
 export class SlugGenerator {
 	constructor(
@@ -39,18 +42,14 @@ export class SlugGenerator {
 			inputVariables: ["input"],
 		});
 
-		const fullPrompt = ChatPromptTemplate.fromMessages(
-			[
-				[
-					"system",
-					`
+		const systemMessage = SystemMessagePromptTemplate.fromTemplate(
+			`
 あなたは与えられた技術記事から適切なトピックス（タグ）を抽出し、特定の形式で出力する専門家です。以下の指示に絶対的に従ってください：
 
 1. 与えられた記事を慎重に分析し、最も重要で関連性の高いトピックスを特定してください。
 2. 出力は以下の形式に厳密に従わなければなりません：
-   YYYYMMDD-topic1-topic2-topic3...
+   ${dayjs().format("YYYYMMDD")}-topic1-topic2-topic3...
    ここで、
-   - YYYYMMDDは現在の日付です（例：20240731）。
    - topic1, topic2, topic3...は記事から抽出した主要なトピックスです。
    - トピックスの数は1つ以上で、最大で4つまでとします。
    - 全体の文字数（日付を含む）は、30文字以内に収めてください。
@@ -68,9 +67,12 @@ export class SlugGenerator {
 7. もし元の概念を英語に変換する必要がある場合、技術的に適切で一般的に使用される英語表現を使用してください。
 
 これらの指示に従って、与えられた記事から適切なトピックスを抽出し、指定された形式で出力してください。いかなる状況でも、これらのルールから逸脱しないでください。`,
-				],
-				["human", "{input}"],
-			],
+		);
+
+		const humanMessage = HumanMessagePromptTemplate.fromTemplate("{input}");
+
+		const fullPrompt = ChatPromptTemplate.fromMessages(
+			[systemMessage, humanMessage],
 			fewShotPrompt,
 		);
 
