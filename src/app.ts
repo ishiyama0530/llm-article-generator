@@ -11,7 +11,7 @@ import { ArticleSectionParser } from "./parsers/ArticleSectionParser";
 import { Chain } from "./utils/chain";
 import { getTodayTitle, saveArticle } from "./utils/file";
 import { logger } from "./utils/logger";
-import { addZennMeta } from "./utils/template";
+import { addZennMeta, decorateTemplate } from "./utils/template";
 
 export async function execute() {
 	const articleSectionParser = new ArticleSectionParser();
@@ -57,7 +57,8 @@ export async function execute() {
 		.chain(improveGenerator)
 		.chain(addDiagramGenerator);
 
-	const { article } = await chain.execute(title);
+	let { article } = await chain.execute(title);
+	article = decorateTemplate(article);
 
 	const topics = await topicsGenerator.generate(article);
 	const slug = await slugGenerator.generate(article);
