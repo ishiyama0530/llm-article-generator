@@ -27,7 +27,7 @@
     "dayjs": "^1.11.12",
     "dotenv": "^16.4.5",
     "langchain": "^0.2.11",
-    "langsmith": "^0.1.39",
+    "langsmith": "^0.1.47",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "winston": "^3.13.1",
