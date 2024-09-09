@@ -26,7 +26,7 @@
     "@langchain/openai": "^0.2.5",
     "dayjs": "^1.11.12",
     "dotenv": "^16.4.5",
-    "langchain": "^0.2.11",
+    "langchain": "^0.2.18",
     "langsmith": "^0.1.39",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
