@@ -22,7 +22,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@langchain/anthropic": "^0.2.12",
+    "@langchain/anthropic": "^0.3.0",
     "@langchain/openai": "^0.2.5",
     "dayjs": "^1.11.12",
     "dotenv": "^16.4.5",
